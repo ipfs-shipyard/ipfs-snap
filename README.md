@@ -70,7 +70,7 @@ The snapcraft.yml in this repo will build go-ipfs from source. This allows the s
 
 This option is included in case we run into issues with building snaps from source, or want to ensure the packages only use official artefacts. It requires no special dockerfile, the existing `snapcore/snapcraft:stable` is sufficient to build it, as it simply copies and unpacks tar files from dist.ipfs.io for packaging.
 
-### Versioning
+### Versioning
 
 Snaps have a human readable version property e.g. `0.6.0` which we would want to keep in sync with the version of ipfs that it installs. Snaps also have a automatically assigned revision number, which is a monotonically increasing integer e.g `1171`, used internally by snap to manage isolation and rollbacks. Every time you publish a release to the snapstore it is assigned a revision.
 

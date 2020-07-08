@@ -1,0 +1,34 @@
+# This snap is an experiment in using pre-built binaries as sthe source of the snap.
+# Drive which version to download by updating the `version` property.
+name: ipfs
+base: core18
+version: 0.6.0
+summary: global, versioned, peer-to-peer filesystem # 79 char long summary
+description: |
+  IPFS combines good ideas from Git, BitTorrent, Kademlia, SFS, and the Web.
+  It is like a single bittorrent swarm, exchanging git objects. IPFS provides
+  an interface as simple as the HTTP web, but with permanence built in. You
+  can also mount the world at /ipfs.
+
+grade: devel # must be 'stable' to release into candidate/stable channels
+confinement: devmode # use 'strict' once you have the right plugs and slots
+
+architectures:
+  - build-on: [amd64, i386, arm64]
+
+apps:
+  ipfs:
+    command: ipfs
+    plugs: [network, network-bind, removable-media]
+    environment: 
+      IPFS_PATH: "$SNAP_USER_COMMON"
+
+parts:
+  ipfs:
+    plugin: dump
+    # our zip files for i386 are labelled as `386` rather than `i386` so this is a workaround to pick the right url.
+    # ...also the only var that you get with the arch in it is the `$SNAPCRAFT_ARCH_TRIPLET` which doesn't give the same values as the snapcraft yaml arch selector
+    source:
+      - on i386: https://dist.ipfs.io/go-ipfs/v$SNAPCRAFT_PROJECT_VERSION/go-ipfs_v$SNAPCRAFT_PROJECT_VERSION_linux-386.tar.gz
+      - on arm64: https://dist.ipfs.io/go-ipfs/v$SNAPCRAFT_PROJECT_VERSION/go-ipfs_v$SNAPCRAFT_PROJECT_VERSION_linux-arm64.tar.gz
+      - else: https://dist.ipfs.io/go-ipfs/v$SNAPCRAFT_PROJECT_VERSION/go-ipfs_v$SNAPCRAFT_PROJECT_VERSION_linux-amd64.tar.gz

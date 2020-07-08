@@ -1,0 +1,5 @@
+# ignore snap build output
+/parts
+/prime
+/stage
+/ipfs_*.snap

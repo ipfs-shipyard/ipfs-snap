@@ -32,3 +32,5 @@ parts:
       - on i386: https://dist.ipfs.io/go-ipfs/v$SNAPCRAFT_PROJECT_VERSION/go-ipfs_v$SNAPCRAFT_PROJECT_VERSION_linux-386.tar.gz
       - on arm64: https://dist.ipfs.io/go-ipfs/v$SNAPCRAFT_PROJECT_VERSION/go-ipfs_v$SNAPCRAFT_PROJECT_VERSION_linux-arm64.tar.gz
       - else: https://dist.ipfs.io/go-ipfs/v$SNAPCRAFT_PROJECT_VERSION/go-ipfs_v$SNAPCRAFT_PROJECT_VERSION_linux-amd64.tar.gz
+    # see here for an example of using a scriptlet to handle it... 
+    # https://github.com/tonyespy/edgex-core-snap/blob/dc69d3989b390396b7a601d13c50bb11fca2b1e4/snap/snapcraft.yaml#L72-L86

@@ -25,11 +25,9 @@ apps:
 parts:
   ipfs:
     source: https://github.com/ipfs/go-ipfs.git
-
-    # master fails to build at time of writing...
-    # todo: do we need to drive this from the version property rather than scrape it in the override-pull step?
-    # having a version hardcoded here means we need ci to modify this file if we are to automate this which isn't ideal.
-    source-tag: v0.6.0
+    # TODO: set this to master when porting this file to ipfs/go-ipfs.
+    # Setting it explicitly lets us build the missing versions 0.5 and 0.6
+    source-tag: v0.5.1
     plugin: go
     # keep me up to date with the go version that go-ipfs expects to be built with.
     go-channel: 1.14/stable

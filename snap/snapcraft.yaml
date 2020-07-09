@@ -25,7 +25,7 @@ apps:
 parts:
   ipfs:
     source: https://github.com/ipfs/go-ipfs.git
-    
+
     # master fails to build at time of writing...
     # todo: do we need to drive this from the version property rather than scrape it in the override-pull step?
     # having a version hardcoded here means we need ci to modify this file if we are to automate this which isn't ideal.
@@ -37,13 +37,11 @@ parts:
     build-packages:
         - build-essential
 
-    # get the snap version from the value in version.go
-    override-pull: |
-      snapcraftctl pull
-      echo "finding version $SNAPCRAFT_PART_SRC/version.go"
-      snapcraftctl set-version $(grep 'const CurrentVersionNumber' $SNAPCRAFT_PART_SRC/version.go | cut -f2 -d\")
-
+    # use `make` to build and set the snap version from `ipfs version` output
     override-build: |
       export GOPATH=$SNAPCRAFT_PART_BUILD/go
       make install
       cp $SNAPCRAFT_PART_BUILD/go/bin/ipfs $SNAPCRAFT_PART_INSTALL
+      export IPFS_VERSION=$($SNAPCRAFT_PART_BUILD/go/bin/ipfs version --commit | cut -c 14-)
+      echo "found version $IPFS_VERSION"
+      snapcraftctl set-version $IPFS_VERSION

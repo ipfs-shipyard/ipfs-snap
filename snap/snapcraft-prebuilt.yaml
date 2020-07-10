@@ -19,7 +19,7 @@ architectures:
 apps:
   ipfs:
     command: ipfs
-    plugs: [network, network-bind, removable-media]
+    plugs: [home, network, network-bind, removable-media]
     environment: 
       IPFS_PATH: "$SNAP_USER_COMMON"
 

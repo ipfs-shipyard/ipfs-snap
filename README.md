@@ -7,6 +7,16 @@ Snap is the default package manager for ubuntu since the release of 20.04. This 
 **WARNING** The IPFS core team do not maintain the ipfs snap (yet). The official source for go-ipfs is https://dist.ipfs.io/#go-ipfs and the recommended install path is here https://docs.ipfs.io/install/command-line-quick-start/
 
 
+## Known issues
+
+- `ipfs mount` fails as fusermount is not included in the snap, and cannot work from a snap as it is not able to create non-root mounts, see: https://github.com/elopio/ipfs-snap/issues/6
+
+```console
+ubuntu@primary:~$ ipfs mount
+2020-07-10T09:54:17.458+0100	ERROR	node	node/mount_unix.go:91	error mounting: fusermount: exec: "fusermount": executable file not found in $PATH
+2020-07-10T09:54:17.463+0100	ERROR	node	node/mount_unix.go:95	error mounting: fusermount: exec: "fusermount": executable file not found in $PATH
+```
+
 ## Requirements
 
 You need `snapcraft` installed locally

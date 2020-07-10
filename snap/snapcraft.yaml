@@ -32,7 +32,7 @@ parts:
     source: https://github.com/ipfs/go-ipfs.git
     # TODO: set this to master when porting this file to ipfs/go-ipfs.
     # Setting it explicitly lets us build the missing versions 0.5 and 0.6
-    source-tag: v0.5.1
+    source-tag: v0.6.0
     plugin: go
     # keep me up to date with the go version that go-ipfs expects to be built with.
     go-channel: 1.14/stable

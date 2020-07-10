@@ -14,10 +14,6 @@ base: core18
 grade: stable
 confinement: strict
 
-# skip building on `ppc64el` and `s390x` to save some cpu cycles.
-architectures:
-  - build-on: [amd64, arm64, armhf, i386]
-
 apps:
   ipfs:
     command: ipfs
@@ -45,6 +41,6 @@ parts:
       export GOPATH=$SNAPCRAFT_PART_BUILD/go
       make install
       cp $SNAPCRAFT_PART_BUILD/go/bin/ipfs $SNAPCRAFT_PART_INSTALL
-      export IPFS_VERSION=$($SNAPCRAFT_PART_BUILD/go/bin/ipfs version | cut -c 14-)
+      export IPFS_VERSION=$($SNAPCRAFT_PART_BUILD/go/bin/ipfs version --commit | cut -c 14-)
       echo "found version $IPFS_VERSION"
       snapcraftctl set-version $IPFS_VERSION

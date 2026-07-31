@@ -1,10 +1,38 @@
+> [!IMPORTANT]
+> **This repository is archived, and Kubo is not published to Snap anymore.**
+>
+> The decision is recorded in
+> [ipfs/kubo#8688](https://github.com/ipfs/kubo/issues/8688), closed on
+> 2022-11-25 with "Kubo is no longer distributed through Snap". The snapcraft
+> config was removed from Kubo in
+> [ipfs/kubo#9352](https://github.com/ipfs/kubo/pull/9352), the release process
+> no longer builds a snap, and the last version pushed to
+> [snapcraft.io/ipfs](https://snapcraft.io/ipfs) only prints a notice saying so.
+>
+> Install Kubo from
+> [the GitHub releases page](https://github.com/ipfs/kubo/releases/latest) or
+> follow
+> [the Linux install guide](https://docs.ipfs.tech/install/command-line/#linux).
+> The published binaries and Docker images are the only officially supported
+> builds; everything else is community packaging.
+>
+> Why it stopped: strict confinement broke ordinary CLI use (`IPFS_PATH`,
+> reading files outside `$HOME`, `ipfs mount`), the
+> [request for classic confinement](https://forum.snapcraft.io/t/ipfs-classic-request/28516)
+> was never granted, the i386 build had been broken since 0.12, and keeping it
+> alive cost more maintainer time than the install base justified.
+>
+> The notes below are kept as a record of how this was built. If you want to
+> package Kubo for Snap, do it in your own repository, and please make clear it
+> is community packaging. If you would rather take this repository over, it can
+> be unarchived for a named maintainer who commits to keeping it up; reach out
+> to the [IPFS Foundation](https://ipfsfoundation.org/about/).
+
 # Build and publish go-ipfs as a snap package
 
 > https://snapcraft.io/ipfs
 
 Snap is the default package manager for ubuntu since the release of 20.04. This repo captures what we know about building go-ipfs as a snap packge and publishing it to the snapstore. 
-
-**WARNING** The IPFS core team do not maintain the ipfs snap (yet). The official source for go-ipfs is https://dist.ipfs.io/#go-ipfs and the recommended install path is here https://docs.ipfs.io/install/command-line-quick-start/
 
 
 ## Known issues
